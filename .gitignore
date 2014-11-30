@@ -2,9 +2,10 @@
 __pycache__/
 *.py[cod]
 
+config.cfg
 # C extensions
 *.so
-
+venv/
 # Distribution / packaging
 .Python
 env/

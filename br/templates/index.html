@@ -1,0 +1,102 @@
+{% extends "layout.html" %}
+
+{% block body %}
+<form action="{{ url_for('index') }}" method="post" class="form-horizontal">
+	<div>
+		<h3>Mirësevini në Sistemin e Regjistrimit të Bizneseve</h3>
+		<hr><br>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.picture.label }}
+		    </div>
+		    <div class="col-xs-5">
+		        {{ form.picture }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.company_name.label }}
+		    </div>
+		    <div class="col-xs-5" style="margin-right: 50px">
+		        {{ form.company_name(class="form-control ") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.owner.label }}
+		    </div>
+		    <div class="col-xs-5">
+		        {{ form.owner(class_="form-control") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.business_nr.label }}
+		    </div>
+		    <div class="col-xs-5" style="margin-right: 50px">
+		        {{ form.business_nr(class="form-control ") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.fiscal_nr.label }}
+		    </div>
+		    <div class="col-xs-5">
+		        {{ form.fiscal_nr(class_="form-control") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.activity.label }}
+		    </div>
+		    <div class="col-xs-5" style="margin-right: 50px">
+		        {{ form.activity(class="form-control ") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.registration_date.label }}
+		    </div>
+		    <div class="col-xs-5">
+		        {{ form.registration_date(class_="form-control") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.phone_nr.label }}
+		    </div>
+		    <div class="col-xs-5" style="margin-right: 50px">
+		        {{ form.phone_nr(class="form-control ") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.email.label }}
+		    </div>
+		    <div class="col-xs-5">
+		        {{ form.email(class_="form-control") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.address.label }}
+		    </div>
+		    <div class="col-xs-5" style="margin-right: 50px">
+		        {{ form.address(class="form-control ") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-5">
+		    	{{ form.other_information.label }}
+		    </div>
+		    <div class="col-xs-5">
+		        {{ form.other_information(class_="form-control") }}
+		     </div>
+		</div>
+	</div>
+	<br>
+	<div align="center">
+		<button type=submit class="btn btn-primary">Ruaj te dhenat</button>
+	</div>
+</form>	
+{% endblock %}
