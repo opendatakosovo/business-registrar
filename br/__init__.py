@@ -56,7 +56,7 @@ def load_config(app):
 
     app.config['LOG_LEVEL'] = config.get('Logging', 'LEVEL').upper()
 
-    # Set the secret key, keep this really secret. We need this for session manager.
+    # Set the secret key, keep this really secret.
     app.secret_key = config.get('Application', 'SECRET_KEY')
 
 
