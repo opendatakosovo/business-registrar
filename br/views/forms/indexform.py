@@ -4,7 +4,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 from flask_wtf import Form
-from wtforms import FileField, TextField, TextAreaField, SelectField
+from wtforms import FileField, TextField, TextAreaField, SelectField, IntegerField
 
 
 class IndexForm(Form):
@@ -29,8 +29,8 @@ class IndexForm(Form):
     picture = FileField('Fotoja e Kompanise')
     company_name = TextField('Emri Kompanise')
     owner = TextField('Pronari')
-    business_nr = TextField('Numri Biznesit')
-    fiscal_nr = TextField('Numri Fiskal')
+    business_nr = IntegerField('Numri Biznesit')
+    fiscal_nr = IntegerField('Numri Fiskal')
     activity = TextField('Aktiviteti')
     # Sector field, and sector C's subfields
     sector = SelectField('Sektori dhe Pershkrimi', choices=sector_tuple_list)
@@ -49,4 +49,6 @@ class IndexForm(Form):
     phone_nr = TextField('Telefoni')
     email = TextField('E-mail')
     address = TextAreaField('Adresa')
+    longitude = TextField('Longitude')
+    latitude = TextField('Latitude')
     other_information = TextAreaField('Informata Tjera')
