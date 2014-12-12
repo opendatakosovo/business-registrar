@@ -31,10 +31,42 @@ class Index(MethodView):
 
         # Update the patient doc with treatment.
         business_form = IndexForm(request.form)
+        business_registrar = {}
         business_registrar = business_form.data
+
+        json_obj = {}
+        json_obj = {
+            'picture': business_registrar['picture'],
+            'company_name': business_registrar['company_name'],
+            'owner': business_registrar['owner'],
+            'business_nr': business_registrar['business_nr'],
+            'fiscal_nr': business_registrar['fiscal_nr'],
+            'activity': business_registrar['activity'],
+            'sector': business_registrar['sector'],
+            'sector_c': business_registrar['sector_c'],
+            'statuti_bisnesit': business_registrar['statuti_bisnesit'],
+            'registration_date': business_registrar['registration_date'],
+            'kontaktet': {
+                'phone_nr': business_registrar['phone_nr'],
+                'email': business_registrar['email'],
+                'website': business_registrar['website'],
+                'facebook': business_registrar['facebook'],
+                'twitter': business_registrar['twitter'],
+            },
+            'lokacioni': {
+                'address': business_registrar['address'],
+                'city': business_registrar['city'],
+                'kordinatat': {
+                    'longitude': business_registrar['longitude'],
+                    'latitude': business_registrar['latitude'],
+                }
+            },
+            'specialiteti': business_registrar['specialiteti'],
+            'other_information': business_registrar['other_information'],
+        }
 
         mongo.db.business.update(
             {'_id': doc_id},
-            {'$set': {'businessRegistration': business_registrar}},
+            {'$set': json_obj},
             True
         )

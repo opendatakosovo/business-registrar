@@ -44,11 +44,19 @@ class IndexForm(Form):
             ('C5. Others', 'C5. Others')
         ]
     )
-
+    statuti_bisnesit = SelectField(
+        'Statuti Bisnesit',
+        choices=[('Aktiv', 'Aktiv'), ('Pasiv', 'Pasiv'), ('I pezulluar', 'I pezulluar')]
+    )
     registration_date = TextField('Data Regjistrimit')
     phone_nr = TextField('Telefoni')
     email = TextField('E-mail')
-    address = TextAreaField('Adresa')
+    website = TextField('Website')
+    facebook = TextField('Facebook')
+    twitter = TextField('Twitter')
+    address = TextField('Adresa')
+    city = SelectField('Qyteti', choices=[('Gjakova', 'Gjakova')])
     longitude = TextField('Longitude')
     latitude = TextField('Latitude')
-    other_information = TextAreaField('Informata Tjera')
+    specialiteti = TextAreaField('Specialiteti i Biznesit')
+    other_information = TextAreaField('Pershkrimi')

@@ -169,6 +169,14 @@
 		</div>
 		<div class="form-group">
 			<div class="control-label col-xs-4">
+		    	{{ form.statuti_bisnesit.label }}
+		    </div>
+		    <div class="col-xs-2" >
+		        {{ form.statuti_bisnesit(class="form-control ") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-4">
 		    	{{ form.phone_nr.label }}
 		    </div>
 		    <div class="col-xs-6" >
@@ -176,28 +184,41 @@
 		     </div>
 		</div>
 		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.email.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.email(class_="form-control") }}
+			<label class="col-xs-4" align="right">Kontaktet tjera</label>
+		    <div class="col-xs-3">
+		        {{ form.email(class_="form-control", placeholder="E-mail") }}
+		     </div>
+		     <div class="col-xs-3">
+		        {{ form.website(class_="form-control", placeholder="Website") }}
+		     </div>
+		</div>
+		<div class="form-group">
+		    <div class="col-xs-offset-4 col-xs-3">
+		        {{ form.facebook(class="form-control", placeholder="Facebook") }}
+		     </div>
+		     <div class="col-xs-3">
+		        {{ form.twitter(class="form-control", placeholder="@twitter") }}
 		     </div>
 		</div>
 		<div class="form-group">
 			<div class="control-label col-xs-4">
 		    	{{ form.address.label }}
 		    </div>
-		    <div class="col-xs-6" >
+		    <div class="col-xs-4" >
 		        {{ form.address(class="form-control ") }}
 		     </div>
+		     <dvi class="col-xs-2">
+		     	{{ form.city(class="form-control ", disabled=True) }}
+		     </dvi>
 		</div>
 
 		<div class="form-group">
-			<div class=" col-xs-offset-4 col-xs-3">
-		    	{{ form.longitude(class="form-control", placeholder='longitude') }}
+			<div class="col-xs-4" align="right"><b>Kordinatat</b></div>
+			<div class="col-xs-3">
+		    	{{ form.longitude(class="form-control", placeholder='Gjatesia') }}
 		    </div>
 		    <div class="col-xs-3" >
-		        {{ form.latitude(class="form-control", placeholder='latitude') }}
+		        {{ form.latitude(class="form-control", placeholder='Gjeresia') }}
 		     </div>
 		</div>
 		<div class="form-group">
@@ -206,6 +227,14 @@
 		    </div>
 		    <div class="col-xs-6">
 		        {{ form.other_information(class_="form-control") }}
+		     </div>
+		</div>
+		<div class="form-group">
+			<div class="control-label col-xs-4">
+		    	{{ form.specialiteti.label }}
+		    </div>
+		    <div class="col-xs-6">
+		        {{ form.specialiteti(class_="form-control") }}
 		     </div>
 		</div>
 	</div>
