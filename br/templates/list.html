@@ -1,0 +1,34 @@
+{% extends "layout.html" %}
+
+{% block body %}
+	<table class="table table-hover">
+		<thead>
+			<tr>
+				<th>Emri</th>
+				<th>Pronari</th>
+				<th>Numri Biznesit</th>
+				<th>Numri Fiskal</th>
+				<th>Data Regjistrimit</th>
+				<th>Statuti Bisnesit</th>
+				<th>Telefoni</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for place in places %}
+				{% set viti = place.registration_date.year %}
+	    		{% set muaji = place.registration_date.month %}
+    			{% set dita = place.registration_date.day %}
+    			{% set data_regjistrimit = (dita, muaji, viti)|join("/") %}
+			<tr>
+				<td>{{ place.company_name }}</td>
+				<td>{{ place.owner }}</td>
+				<td>{{ place.business_nr }}</td>
+				<td>{{ place.fiscal_nr }}</td>
+				<td>{{ data_regjistrimit }}</td>
+				<td>{{ place.business_statute }}</td>
+				<td>{{ place.phone_nr }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+{% endblock %}
