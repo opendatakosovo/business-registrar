@@ -26,7 +26,7 @@ class IndexForm(Form):
 
     sector_tuple_list = [(x, x) for x in sector_options]
 
-    picture = FileField('Fotoja e Kompanise')
+    picture = TextField('Fotoja e Kompanise')
     company_name = TextField('Emri Kompanise')
     owner = TextField('Pronari')
     business_nr = IntegerField('Numri Biznesit')

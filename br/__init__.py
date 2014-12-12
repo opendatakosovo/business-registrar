@@ -83,6 +83,7 @@ def configure_logging(app):
 
 #Import Forms
 from views.index import Index
+from views.json.places import Places
 
 
 def register_url_rules(app):
@@ -93,3 +94,5 @@ def register_url_rules(app):
 
     #Index url rule
     app.add_url_rule('/', view_func=Index.as_view('index'))
+
+    app.add_url_rule('/json/places', view_func=Places.as_view('json_places'))
