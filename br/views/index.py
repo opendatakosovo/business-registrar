@@ -47,10 +47,6 @@ class Index(MethodView):
             'business_nr': business_registrar['business_nr'],
             'fiscal_nr': business_registrar['fiscal_nr'],
             'activity': business_registrar['activity'],
-            'sector': {
-                'primary': business_registrar['sector'],
-                'secondary': business_registrar['sector_c'],
-            },
             'business_statute': business_registrar['business_statute'],
             'registration_date': date,
             'contacts': {
@@ -71,6 +67,22 @@ class Index(MethodView):
             'speciality': business_registrar['speciality'],
             'other_information': business_registrar['other_information'],
         }
+
+        sector = business_registrar['sector']
+        sector_c = business_registrar['sector_c']
+
+        print sector
+        print sector_c
+
+        if sector == 'C. Processing Industry' and sector_c != "None":
+            json_obj['sector'] = {
+                'primary': sector,
+                'secondary': sector_c,
+            }
+        else:
+            json_obj['sector'] = {
+                'primary':sector
+            }
 
         mongo.db.business.update(
             {'_id': doc_id},

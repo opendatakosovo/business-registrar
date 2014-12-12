@@ -14,7 +14,7 @@ class IndexForm(Form):
         'C. Processing Industry', 'D. Supply with power, gas, steam  and conditioner air; water supply',
         'E. Canalization, activities of sewage management and treatment', 'F. Construction',
         'G. Retail sales and wholesale; reparation of motor vehicles and motorcycles', 'H. Transportation and Storage',
-        'I. Accommodation and Food service activities', 'J.Information and Communication',
+        'I. Accommodation and Food service activities', 'J. Information and Communication',
         'K. Financial activities and Insurance', 'L. Real Estate activities',
         'M. Professional, Scientific and Technical activities', 'N. Administrative and supporting services',
         'O. Public Administration and Security – Obligated Social Security', 'P. Education',
@@ -55,8 +55,8 @@ class IndexForm(Form):
     facebook = TextField('Facebook')
     twitter = TextField('Twitter')
     address = TextField('Adresa')
-    city = SelectField('Qyteti', choices=[('Gjakove', 'Gjakove')])
-    longitude = TextField('Longitude')
-    latitude = TextField('Latitude')
+    city = SelectField('Qyteti', choices=[('Gjakove', 'Gjakove')], default='Gjakove')
+    longitude = IntegerField('Longitude')
+    latitude = IntegerField('Latitude')
     speciality = TextAreaField('Specialiteti i Biznesit')
     other_information = TextAreaField('Pershkrimi')
