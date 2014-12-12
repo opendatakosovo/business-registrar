@@ -44,7 +44,7 @@ class IndexForm(Form):
             ('C5. Others', 'C5. Others')
         ]
     )
-    statuti_bisnesit = SelectField(
+    business_statute = SelectField(
         'Statuti Bisnesit',
         choices=[('Aktiv', 'Aktiv'), ('Pasiv', 'Pasiv'), ('I pezulluar', 'I pezulluar')]
     )
@@ -55,8 +55,8 @@ class IndexForm(Form):
     facebook = TextField('Facebook')
     twitter = TextField('Twitter')
     address = TextField('Adresa')
-    city = SelectField('Qyteti', choices=[('Gjakova', 'Gjakova')])
+    city = SelectField('Qyteti', choices=[('Gjakove', 'Gjakove')])
     longitude = TextField('Longitude')
     latitude = TextField('Latitude')
-    specialiteti = TextAreaField('Specialiteti i Biznesit')
+    speciality = TextAreaField('Specialiteti i Biznesit')
     other_information = TextAreaField('Pershkrimi')

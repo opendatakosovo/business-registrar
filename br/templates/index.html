@@ -169,10 +169,10 @@
 		</div>
 		<div class="form-group">
 			<div class="control-label col-xs-4">
-		    	{{ form.statuti_bisnesit.label }}
+		    	{{ form.business_statute.label }}
 		    </div>
 		    <div class="col-xs-2" >
-		        {{ form.statuti_bisnesit(class="form-control ") }}
+		        {{ form.business_statute(class="form-control ") }}
 		     </div>
 		</div>
 		<div class="form-group">
@@ -208,7 +208,7 @@
 		        {{ form.address(class="form-control ") }}
 		     </div>
 		     <dvi class="col-xs-2">
-		     	{{ form.city(class="form-control ", disabled=True) }}
+		     	{{ form.city(disabled=True, class="form-control ", value="Gjakove") }}
 		     </dvi>
 		</div>
 
@@ -231,10 +231,10 @@
 		</div>
 		<div class="form-group">
 			<div class="control-label col-xs-4">
-		    	{{ form.specialiteti.label }}
+		    	{{ form.speciality.label }}
 		    </div>
 		    <div class="col-xs-6">
-		        {{ form.specialiteti(class_="form-control") }}
+		        {{ form.speciality(class_="form-control") }}
 		     </div>
 		</div>
 	</div>

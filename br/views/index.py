@@ -3,6 +3,8 @@ from br.views.forms.indexform import IndexForm
 from flask.views import MethodView
 from br import mongo
 from br.utils.utils import Utils
+from datetime import datetime
+
 
 utils = Utils()
 
@@ -33,6 +35,9 @@ class Index(MethodView):
         business_form = IndexForm(request.form)
         business_registrar = {}
         business_registrar = business_form.data
+        if business_registrar['registration_date'] != "":
+            date_string = business_registrar['registration_date']
+            date = datetime.strptime(date_string, '%d/%m/%Y')
 
         json_obj = {}
         json_obj = {
@@ -42,26 +47,28 @@ class Index(MethodView):
             'business_nr': business_registrar['business_nr'],
             'fiscal_nr': business_registrar['fiscal_nr'],
             'activity': business_registrar['activity'],
-            'sector': business_registrar['sector'],
-            'sector_c': business_registrar['sector_c'],
-            'statuti_bisnesit': business_registrar['statuti_bisnesit'],
-            'registration_date': business_registrar['registration_date'],
-            'kontaktet': {
+            'sector': {
+                'primary': business_registrar['sector'],
+                'secondary': business_registrar['sector_c'],
+            },
+            'business_statute': business_registrar['business_statute'],
+            'registration_date': date,
+            'contacts': {
                 'phone_nr': business_registrar['phone_nr'],
                 'email': business_registrar['email'],
                 'website': business_registrar['website'],
                 'facebook': business_registrar['facebook'],
                 'twitter': business_registrar['twitter'],
             },
-            'lokacioni': {
+            'location': {
                 'address': business_registrar['address'],
                 'city': business_registrar['city'],
-                'kordinatat': {
+                'coordinates': {
                     'longitude': business_registrar['longitude'],
                     'latitude': business_registrar['latitude'],
                 }
             },
-            'specialiteti': business_registrar['specialiteti'],
+            'speciality': business_registrar['speciality'],
             'other_information': business_registrar['other_information'],
         }
 
