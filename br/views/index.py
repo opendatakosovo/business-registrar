@@ -46,7 +46,7 @@ class Index(MethodView):
             'owner': business_registrar['owner'],
             'business_nr': business_registrar['business_nr'],
             'fiscal_nr': business_registrar['fiscal_nr'],
-            'activity': business_registrar['activity'],
+            'activities': business_registrar['activities'],
             'business_statute': business_registrar['business_statute'],
             'registration_date': date,
             'contacts': {

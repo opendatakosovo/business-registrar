@@ -85,6 +85,13 @@
 	                    }
 	                }
 	            },
+	            activities: {
+	                validators: {
+	                	notEmpty : {
+	                		message: 'Ju lutem plotesoni fushen!'
+	                	}
+	                }
+	            },
 	            email: {
 	                validators: {
 	                    emailAddress: {
@@ -186,10 +193,10 @@
 		</div>
 		<div class="form-group">
 			<div class="control-label col-xs-4">
-		    	{{ form.activity.label }}
+		    	{{ form.activities.label }}
 		    </div>
 		    <div class="col-xs-6" >
-		        {{ form.activity(class="form-control") }}
+		        {{ form.activities(class="form-control") }}
 		     </div>
 		</div>
 		<div class="form-group">
