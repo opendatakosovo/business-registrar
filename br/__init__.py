@@ -82,7 +82,7 @@ def configure_logging(app):
     app.logger.info('Logging to: %s', log_path)
 
 #Import Forms
-from views.index import Index
+from views.businessregistration import BusinessRegistration
 from views.list import List
 from views.json.places import Places
 
@@ -94,8 +94,12 @@ def register_url_rules(app):
     '''
 
     #Index url rule
-    app.add_url_rule('/', view_func=Index.as_view('index'))
+    app.add_url_rule('/', view_func=BusinessRegistration.as_view('load_business_registration_form'))
+
+    app.add_url_rule('/register', view_func=BusinessRegistration.as_view('register_business'))
+
+    app.add_url_rule('/edit/<string:bid>', view_func=BusinessRegistration.as_view('edit_business_registration'))
 
     app.add_url_rule('/list', view_func=List.as_view('list'))
 
-    app.add_url_rule('/json/places', view_func=Places.as_view('json_places'))
+    app.add_url_rule('/json/businesses', view_func=Places.as_view('json_business'))

@@ -10,5 +10,5 @@ class List(MethodView):
     def get(self):
         ''' Dispatch request
         '''
-        places = mongo.db.business.find();
-        return render_template('list.html', places=places)
+        businesses = mongo.db.businesses.find({});
+        return render_template('list.html', businesses=businesses)

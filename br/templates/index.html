@@ -2,286 +2,324 @@
 
 {% block body %}
 <script type="text/javascript">
-	$(document).ready(function() {
-		$('.btn').button();
-		$('#sector_c').val('');
-		//this function enables the sub selectField of Sector C, when we select the field   Sector C on General Select Field.
-		$('select[name="sector"]').on('change', function(){
-			var sector_c = $(this).val();
-			if(sector_c == "C. Processing Industry"){
-				$("#sector_c").attr("disabled", false);
-			}
-			else{
-				$('#sector_c').attr('disabled', true);
-				$('#sector_c').val('');
-			}
-		});
-		//Date picker pop-up for Company registration date
-		$('.form-date-picker').datepicker({
-    		autoclose: true,
-    		todayHighlight: true,
-			format: 'dd/mm/yyyy',
-		});
-		//Validation of different fields
-		$('.form-horizontal').bootstrapValidator({
-			feedbackIcons: {
-	            valid: 'glyphicon glyphicon-ok',
-	            invalid: 'glyphicon glyphicon-remove',
-	            validating: 'glyphicon glyphicon-refresh'
-	        },
-	        fields:{
-	        	picture:{
-	                validators: {
-	                    uri: {
-                        	message: 'URL i fotografise nuk eshte i velfshem!'
+    $(document).ready(function() {
+        $('.btn').button();
+        $('#sector_c').val('');
+        //this function enables the sub selectField of Sector C, when we select the field   Sector C on General Select Field.
+        $('select[name="sector"]').on('change', function(){
+            var sector_c = $(this).val();
+            if(sector_c == "C. Processing Industry"){
+                $("#sector_c").attr("disabled", false);
+            }
+            else{
+                $('#sector_c').attr('disabled', true);
+                $('#sector_c').val('');
+            }
+        });
+        //Date picker pop-up for Company registration date
+        $('.form-date-picker').datepicker({
+            autoclose: true,
+            todayHighlight: true,
+            format: 'dd/mm/yyyy',
+        });
+        //Validation of different fields
+        $('.form-horizontal').bootstrapValidator({
+            feedbackIcons: {
+                valid: 'glyphicon glyphicon-ok',
+                invalid: 'glyphicon glyphicon-remove',
+                validating: 'glyphicon glyphicon-refresh'
+            },
+            fields:{
+                picture_outside:{
+                    validators: {
+                        uri: {
+                            message: 'URL i fotografise nuk eshte i velfshem!'
                         }
-	                }
-	            },
-	            company_name:{
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Ju lutem plotesoni fushen!'
-	                    }
-	                }
-	            },
-	        	business_nr:{
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Ju lutem plotesoni fushen!'
-	                    },
-	                    numeric: {
-	                        message: 'Fusha duhet te permbaje vetem vlera numerike!'
-	                    }
-	                }
-	            },
-	            owner:{
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Ju lutem plotesoni fushen!'
-	                    },
-	                    alphabetical: {
-	                        message: 'Fusha duhet te permbaje vetem vlera numerike!'
-	                    }
-	                }
-	            },
-				fiscal_nr: {
-	                validators: {
-	                    notEmpty: {
-	                        message: 'Ju lutem plotesoni fushen!'
-	                    },
-	                    numeric: {
-	                        message: 'Fusha duhet te permbaje vetem vlera numerike!'
-	                    }
-	                }
-	            },
-	            registration_date: {
-	                validators: {
-	                	notEmpty : {
-	                		message: 'Ju lutem plotesoni fushen!'
-	                	},
-	                    date: {
-	                        format: 'DD/MM/YYYY',
-	                        message: 'Ju lutem plotesoni fushen sipas formatit te kerkuar DD/MM/VVVV'
-	                    }
-	                }
-	            },
-	            activities: {
-	                validators: {
-	                	notEmpty : {
-	                		message: 'Ju lutem plotesoni fushen!'
-	                	}
-	                }
-	            },
-	            email: {
-	                validators: {
-	                    emailAddress: {
-	                        message: 'E-mail adresa nuk eshte valide!'
-	                    }
-	                }
-	            },
-	            website: {
-	                validators: {
-	                    uri: {
-	                        message: 'Website URL nuk eshte valide!'
-	                    }
-	                }
-	            },
-	            facebook: {
-	                validators: {
-	                    uri: {
-	                        message: 'Facebook URL nuk eshte valide!'
-	                    }
-	                }
-	            },
-	            longitude: {
-	                validators: {
-	                    numeric: {
-	                        message: 'Fusha duhet te permbaje vetem vlera numerike!'
-	                    }
-	                }
-	            },
-	            latitude: {
-	                validators: {
-	                    numeric: {
-	                        message: 'Fusha duhet te permbaje vetem vlera numerike!'
-	                    }
-	                }
-	            } 
-		    }
-		});
+                    }
+                },
+                picture_inside:{
+                    validators: {
+                        uri: {
+                            message: 'URL i fotografise nuk eshte i velfshem!'
+                        }
+                    }
+                },
+                picture_panorama:{
+                    validators: {
+                        uri: {
+                            message: 'URL i fotografise nuk eshte i velfshem!'
+                        }
+                    }
+                },
+                business_name:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Ju lutem plotesoni fushen!'
+                        }
+                    }
+                },
+                business_nr:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Ju lutem plotesoni fushen!'
+                        },
+                        numeric: {
+                            message: 'Fusha duhet te permbaje vetem vlera numerike!'
+                        }
+                    }
+                },
+                owner:{
+                    validators: {
+                        notEmpty: {
+                            message: 'Ju lutem plotesoni fushen!'
+                        },
+                        alphabetical: {
+                            message: 'Fusha duhet te permbaje vetem vlera numerike!'
+                        }
+                    }
+                },
+                fiscal_nr: {
+                    validators: {
+                        notEmpty: {
+                            message: 'Ju lutem plotesoni fushen!'
+                        },
+                        numeric: {
+                            message: 'Fusha duhet te permbaje vetem vlera numerike!'
+                        }
+                    }
+                },
+                registration_date: {
+                    validators: {
+                        notEmpty : {
+                            message: 'Ju lutem plotesoni fushen!'
+                        },
+                        date: {
+                            format: 'DD/MM/YYYY',
+                            message: 'Ju lutem plotesoni fushen sipas formatit te kerkuar DD/MM/VVVV'
+                        }
+                    }
+                },
+                activities: {
+                    validators: {
+                        notEmpty : {
+                            message: 'Ju lutem plotesoni fushen!'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        emailAddress: {
+                            message: 'E-mail adresa nuk eshte valide!'
+                        }
+                    }
+                },
+                website: {
+                    validators: {
+                        uri: {
+                            message: 'Website URL nuk eshte valide!'
+                        }
+                    }
+                },
+                facebook: {
+                    validators: {
+                        uri: {
+                            message: 'Facebook URL nuk eshte valide!'
+                        }
+                    }
+                },
+                longitude: {
+                    validators: {
+                        numeric: {
+                            message: 'Fusha duhet te permbaje vetem vlera numerike!'
+                        }
+                    }
+                },
+                latitude: {
+                    validators: {
+                        numeric: {
+                            message: 'Fusha duhet te permbaje vetem vlera numerike!'
+                        }
+                    }
+                } 
+            }
+        });
 
-		//Revalidate datepicker field
-		$('.form-date-picker').on('change.dp show.dp', function(e) {
-        	$('.form-horizontal').bootstrapValidator('revalidateField', 'registration_date');
-    	});
-	});
+        //Revalidate datepicker field
+        $('.form-date-picker').on('change.dp show.dp', function(e) {
+            $('.form-horizontal').bootstrapValidator('revalidateField', 'registration_date');
+        });
+    });
 </script>
-<form action="{{ url_for('index') }}" method="post" class="form-horizontal">
-	<div class="container">
-		<h3>Mirësevini në Sistemin e Regjistrimit të Bizneseve</h3>
-		<hr><br>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.picture.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.picture(class="form-control ") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.company_name.label }}
-		    </div>
-		    <div class="col-xs-6" >
-		        {{ form.company_name(class="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.owner.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.owner(class_="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.sector.label }}
-		    </div>
-		    <div class="col-xs-4">
-		        {{ form.sector(class="form-control") }}
-		     </div>
-		     <div class="col-xs-2">
-		        {{ form.sector_c(disabled=True, class="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.business_nr.label }}
-		    </div>
-		    <div class="col-xs-6" >
-		        {{ form.business_nr(class="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.fiscal_nr.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.fiscal_nr(class_="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.activities.label }}
-		    </div>
-		    <div class="col-xs-6" >
-		        {{ form.activities(class="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.registration_date.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.registration_date(class_="form-control form-date-picker") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.business_statute.label }}
-		    </div>
-		    <div class="col-xs-2" >
-		        {{ form.business_statute(class="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.phone_nr.label }}
-		    </div>
-		    <div class="col-xs-6" >
-		        {{ form.phone_nr(class="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<label class="col-xs-4" align="right">Kontaktet tjera</label>
-		    <div class="col-xs-3">
-		        {{ form.email(class_="form-control", placeholder="E-mail") }}
-		     </div>
-		     <div class="col-xs-3">
-		        {{ form.website(class_="form-control", placeholder="Website") }}
-		     </div>
-		</div>
-		<div class="form-group">
-		    <div class="col-xs-offset-4 col-xs-3">
-		        {{ form.facebook(class="form-control", placeholder="Facebook") }}
-		     </div>
-		     <div class="col-xs-3">
-		        {{ form.twitter(class="form-control", placeholder="@twitter") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.address.label }}
-		    </div>
-		    <div class="col-xs-4" >
-		        {{ form.address(class="form-control") }}
-		     </div>
-		     <dvi class="col-xs-2">
-		     	{{ form.city(disabled=True, class="form-control", value="Gjakove") }}
-		     </dvi>
-		</div>
+<form action="{{ url_for('register_business') }}" method="post" class="form-horizontal">
+    <div class="container">
+        <h3>Mirësevini në Sistemin e Regjistrimit të Bizneseve</h3>
+        <hr><br>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.picture_outside.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.picture_outside(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.picture_inside.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.picture_inside(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.picture_panorama.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.picture_panorama(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.business_type.label }}
+            </div>
+            <div class="col-xs-6" >
+                {{ form.business_type(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.business_name.label }}
+            </div>
+            <div class="col-xs-6" >
+                {{ form.business_name(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.owner.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.owner(class_="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.sector.label }}
+            </div>
+            <div class="col-xs-4">
+                {{ form.sector(class="form-control") }}
+             </div>
+             <div class="col-xs-2">
+                {{ form.sector_c(disabled=True, class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.business_nr.label }}
+            </div>
+            <div class="col-xs-6" >
+                {{ form.business_nr(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.fiscal_nr.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.fiscal_nr(class_="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.activities.label }}
+            </div>
+            <div class="col-xs-6" >
+                {{ form.activities(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.registration_date.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.registration_date(class_="form-control form-date-picker") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.business_statute.label }}
+            </div>
+            <div class="col-xs-2" >
+                {{ form.business_statute(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.phone_nr.label }}
+            </div>
+            <div class="col-xs-6" >
+                {{ form.phone_nr(class="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <label class="col-xs-4" align="right">Kontaktet tjera</label>
+            <div class="col-xs-3">
+                {{ form.email(class_="form-control", placeholder="E-mail") }}
+             </div>
+             <div class="col-xs-3">
+                {{ form.website(class_="form-control", placeholder="Website") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="col-xs-offset-4 col-xs-3">
+                {{ form.facebook(class="form-control", placeholder="Facebook") }}
+             </div>
+             <div class="col-xs-3">
+                {{ form.twitter(class="form-control", placeholder="@twitter") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.address.label }}
+            </div>
+            <div class="col-xs-4" >
+                {{ form.address(class="form-control") }}
+             </div>
+             <dvi class="col-xs-2">
+                {{ form.city(disabled=True, class="form-control", value="Gjakove") }}
+             </dvi>
+        </div>
 
-		<div class="form-group">
-			<div class="col-xs-4" align="right"><b>Kordinatat</b></div>
-			<div class="col-xs-3">
-		    	{{ form.longitude(class="form-control", placeholder='Gjatesia') }}
-		    </div>
-		    <div class="col-xs-3" >
-		        {{ form.latitude(class="form-control", placeholder='Gjeresia') }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.other_information.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.other_information(class_="form-control") }}
-		     </div>
-		</div>
-		<div class="form-group">
-			<div class="control-label col-xs-4">
-		    	{{ form.speciality.label }}
-		    </div>
-		    <div class="col-xs-6">
-		        {{ form.speciality(class_="form-control") }}
-		     </div>
-		</div>
-	</div>
-	<br>
-	<div align="center">
-		<button type=submit class="btn btn-primary">Ruaj te dhenat</button>
-	</div>
-	<br>
-</form>	
+        <div class="form-group">
+            <div class="col-xs-4" align="right"><b>Kordinatat</b></div>
+            <div class="col-xs-3">
+                {{ form.longitude(class="form-control", placeholder='Gjatesia') }}
+            </div>
+            <div class="col-xs-3" >
+                {{ form.latitude(class="form-control", placeholder='Gjeresia') }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.other_information.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.other_information(class_="form-control") }}
+             </div>
+        </div>
+        <div class="form-group">
+            <div class="control-label col-xs-4">
+                {{ form.speciality.label }}
+            </div>
+            <div class="col-xs-6">
+                {{ form.speciality(class_="form-control") }}
+             </div>
+        </div>
+    </div>
+    <br>
+    <div align="center">
+        <button type=submit class="btn btn-primary">Ruaj te dhenat</button>
+    </div>
+    <br>
+</form> 
 {% endblock %}

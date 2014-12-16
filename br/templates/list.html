@@ -11,22 +11,24 @@
 				<th>Data Regjistrimit</th>
 				<th>Statuti Bisnesit</th>
 				<th>Telefoni</th>
+				<th></th>
 			</tr>
 		</thead>
 		<tbody>
-			{% for place in places %}
-				{% set viti = place.registration_date.year %}
-	    		{% set muaji = place.registration_date.month %}
-    			{% set dita = place.registration_date.day %}
+			{% for biz in businesses %}
+				{% set viti = biz.registration_date.year %}
+	    		{% set muaji = biz.registration_date.month %}
+    			{% set dita = biz.registration_date.day %}
     			{% set data_regjistrimit = (dita, muaji, viti)|join("/") %}
 			<tr>
-				<td>{{ place.company_name }}</td>
-				<td>{{ place.owner }}</td>
-				<td>{{ place.business_nr }}</td>
-				<td>{{ place.fiscal_nr }}</td>
+				<td>{{ biz.business_name }}</td>
+				<td>{{ biz.owner }}</td>
+				<td>{{ biz.business_nr }}</td>
+				<td>{{ biz.fiscal_nr }}</td>
 				<td>{{ data_regjistrimit }}</td>
-				<td>{{ place.business_statute }}</td>
-				<td>{{ place.phone_nr }}</td>
+				<td>{{ biz.business_statute }}</td>
+				<td>{{ biz.contacts.phone_nr }}</td>
+				<td><a href="/edit/{{ biz._id }}" >Edit</a></td>
 			</tr>
 			{% endfor %}
 		</tbody>

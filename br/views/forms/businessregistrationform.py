@@ -7,8 +7,51 @@ from flask_wtf import Form
 from wtforms import FileField, TextField, TextAreaField, SelectField, IntegerField, SelectMultipleField
 
 
-class IndexForm(Form):
+class BusinessRegistrationForm(Form):
 
+    picture_outside = TextField('Fotoja e Jashtme e Kompanise')
+    picture_inside = TextField('Fotoja e Mbrendshme e Kompanise')
+    picture_panorama = TextField('Fotoja Panorame e Kompanise')
+
+    business_type = SelectField(
+        "Tipi Biznesit",
+        choices=[
+            ('D.P.H.', 'D.P.H.'),
+            ('D.P.T.', 'D.P.T.'),
+            ('D.P.T.Z.', 'D.P.T.Z.'),
+            ('D.P.Z.', 'D.P.Z.'),
+            ('N.P.T.', 'N.P.T.'),
+            ('N.SH.', 'N.SH.'),
+            ('N.P.SH.', 'N.P.SH.'),
+            ('Other', 'Other'),
+        ]
+    )
+
+    business_name = TextField('Emri Biznesit')
+    owner = TextField('Pronari')
+    business_nr = IntegerField('Numri Biznesit')
+    fiscal_nr = IntegerField('Numri Fiskal')
+
+    activities = SelectMultipleField('Aktiviteti',
+        choices = [
+            ('Accomodation', 'Accomodation'),
+            ('Restaurant', 'Restaurant'),
+            ('Cafe', 'Cafe'),
+            ('Museum', 'Museum'),
+            ('Sight', 'Sight'),
+            ('Art Shop', 'Art Shop'),
+            ('Craft Shop', 'Craft Shop'),
+            ('Clothing Shop', 'Clothing Shop'),
+            ('Shoe Shop', 'Shoe Shop'),
+            ('Market', 'Market'),
+            ('Bar', 'Bar'),
+            ('Nightclub', 'Nightclub'),
+            ('Park', 'Park'),
+            ('Other', 'Other')
+        ]
+    )
+
+    # Sector field, and sector C's subfields
     sector_options = [
         'A. Agriculture, Forestry and Fishing', 'B. Mine and Stone quarry (Extraction Industry)',
         'C. Processing Industry', 'D. Supply with power, gas, steam  and conditioner air; water supply',
@@ -25,32 +68,8 @@ class IndexForm(Form):
     ]
 
     sector_tuple_list = [(x, x) for x in sector_options]
-
-    picture = TextField('Fotoja e Kompanise')
-    company_name = TextField('Emri Kompanise')
-    owner = TextField('Pronari')
-    business_nr = IntegerField('Numri Biznesit')
-    fiscal_nr = IntegerField('Numri Fiskal')
-
-    activities = SelectMultipleField('Aktiviteti',
-        choices = [
-            ('Accomodation', 'Accomodation'),
-            ('Restaurant', 'Restaurant'),
-            ('Cafe', 'Cafe'),
-            ('Museum', 'Museum'),
-            ('Sight', 'Sight'),
-            ('Art Shop', 'Art Shop'),
-            ('Craft Shop', 'Craft Shop'),
-            ('Market', 'Market'),
-            ('Bar', 'Bar'),
-            ('Nightclub', 'Nightclub'),
-            ('Park', 'Park'),
-            ('Other', 'Other')
-        ]
-    )
-
-    # Sector field, and sector C's subfields
     sector = SelectField('Sektori dhe Pershkrimi', choices=sector_tuple_list)
+
     sector_c = SelectField(
         "Sektori C",
         choices=[
@@ -65,6 +84,7 @@ class IndexForm(Form):
         'Statuti Bisnesit',
         choices=[('Aktiv', 'Aktiv'), ('Pasiv', 'Pasiv'), ('I pezulluar', 'I pezulluar')]
     )
+
     registration_date = TextField('Data Regjistrimit')
     phone_nr = TextField('Telefoni')
     email = TextField('E-mail')
@@ -72,7 +92,9 @@ class IndexForm(Form):
     facebook = TextField('Facebook')
     twitter = TextField('Twitter')
     address = TextField('Adresa')
+
     city = SelectField('Qyteti', choices=[('Gjakove', 'Gjakove')], default='Gjakove')
+
     longitude = IntegerField('Longitude')
     latitude = IntegerField('Latitude')
     speciality = TextAreaField('Specialiteti i Biznesit')

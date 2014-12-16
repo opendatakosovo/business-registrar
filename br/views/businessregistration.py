@@ -1,21 +1,51 @@
 from flask import render_template, request, redirect, url_for
-from br.views.forms.indexform import IndexForm
+from br.views.forms.businessregistrationform import BusinessRegistrationForm
 from flask.views import MethodView
 from br import mongo
 from br.utils.utils import Utils
 from datetime import datetime
 
-
 utils = Utils()
 
-
-class Index(MethodView):
+class BusinessRegistration(MethodView):
     methods = ['GET', 'POST']
 
-    def get(self):
+    def get(self, bid=None):
         ''' Dispatch request
         '''
-        form = IndexForm()
+        form = BusinessRegistrationForm()
+
+        # Populate form if we are retrieve it to edit a business
+        if bid != None:
+            doc = mongo.db.businesses.find_one({'_id': bid})
+
+            #form.picture_outside.data = doc['picture']['outside']
+            #form.picture_inside.data = doc['picture']['inside']
+            #form.picture_panorama.data = doc['picture']['panorama']
+            form.business_name.data = doc['business_name']
+            form.owner.data = doc['owner']
+            form.business_nr.data = doc['business_nr']
+            form.fiscal_nr.data = doc['fiscal_nr']
+            form.activities.data = doc['activities']
+
+            form.sector.data = doc['sector']['primary']
+            if 'secondary' in doc['sector']:
+                form.sector_c.data = doc['sector']['secondary']
+            
+            form.business_statute.data = doc['business_statute']
+            form.registration_date.data = doc['registration_date']
+            form.phone_nr.data = doc['contacts']['phone_nr']
+            form.email.data = doc['contacts']['email']
+            form.website.data = doc['contacts']['website']
+            form.facebook.data = doc['contacts']['facebook']
+            form.twitter.data = doc['contacts']['twitter']
+            form.address.data = doc['location']['address']
+            form.city.data = doc['location']['city']
+            form.longitude.data = doc['location']['coordinates']['longitude']
+            form.latitude.data = doc['location']['coordinates']['latitude']
+            form.speciality.data = doc['speciality']
+            form.other_information.data = doc['other_information']
+
         return render_template('index.html', form=form)
 
     def post(self):
@@ -41,7 +71,11 @@ class Index(MethodView):
 
         json_obj = {}
         json_obj = {
-            'picture': business_registrar['picture'],
+            'picture':{
+                'outside': business_registrar['outside'],
+                'inside': business_registrar['inside'],
+                'panorama': business_registrar['panorama']
+            },
             'company_name': business_registrar['company_name'],
             'owner': business_registrar['owner'],
             'business_nr': business_registrar['business_nr'],
@@ -71,9 +105,6 @@ class Index(MethodView):
         sector = business_registrar['sector']
         sector_c = business_registrar['sector_c']
 
-        print sector
-        print sector_c
-
         if sector == 'C. Processing Industry' and sector_c != "None":
             json_obj['sector'] = {
                 'primary': sector,
@@ -84,7 +115,7 @@ class Index(MethodView):
                 'primary':sector
             }
 
-        mongo.db.business.update(
+        mongo.db.businesses.update(
             {'_id': doc_id},
             {'$set': json_obj},
             True
