@@ -4,6 +4,7 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
+				<th></th>
 				<th>Emri</th>
 				<th>Pronari</th>
 				<th>Numri Biznesit</th>
@@ -21,6 +22,7 @@
     			{% set dita = biz.registration_date.day %}
     			{% set data_regjistrimit = (dita, muaji, viti)|join("/") %}
 			<tr>
+				<td><b>{{ loop.index }}</b></td>
 				<td>{{ biz.business_name }}</td>
 				<td>{{ biz.owner }}</td>
 				<td>{{ biz.business_nr }}</td>

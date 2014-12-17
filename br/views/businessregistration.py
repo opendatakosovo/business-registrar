@@ -19,9 +19,9 @@ class BusinessRegistration(MethodView):
         if bid != None:
             doc = mongo.db.businesses.find_one({'_id': bid})
 
-            #form.picture_outside.data = doc['picture']['outside']
-            #form.picture_inside.data = doc['picture']['inside']
-            #form.picture_panorama.data = doc['picture']['panorama']
+            form.picture_outside.data = doc['picture']['outside']
+            form.picture_inside.data = doc['picture']['inside']
+            form.picture_panorama.data = doc['picture']['panorama']
             form.business_name.data = doc['business_name']
             form.owner.data = doc['owner']
             form.business_nr.data = doc['business_nr']
@@ -33,7 +33,11 @@ class BusinessRegistration(MethodView):
                 form.sector_c.data = doc['sector']['secondary']
             
             form.business_statute.data = doc['business_statute']
-            form.registration_date.data = doc['registration_date']
+            
+            date_iso = doc['registration_date']
+            date_str = date_iso.strftime('%d/%m/%Y')
+            form.registration_date.data = date_str
+
             form.phone_nr.data = doc['contacts']['phone_nr']
             form.email.data = doc['contacts']['email']
             form.website.data = doc['contacts']['website']
@@ -57,12 +61,12 @@ class BusinessRegistration(MethodView):
         #save business form
         self.save_business_form(doc_id)
 
-        return redirect(url_for('index'))
+        return redirect(url_for('load_business_registration_form'))
 
     def save_business_form(self, doc_id):
 
         # Update the patient doc with treatment.
-        business_form = IndexForm(request.form)
+        business_form = BusinessRegistrationForm(request.form)
         business_registrar = {}
         business_registrar = business_form.data
         if business_registrar['registration_date'] != "":
@@ -72,11 +76,11 @@ class BusinessRegistration(MethodView):
         json_obj = {}
         json_obj = {
             'picture':{
-                'outside': business_registrar['outside'],
-                'inside': business_registrar['inside'],
-                'panorama': business_registrar['panorama']
+                'outside': business_registrar['picture_outside'],
+                'inside': business_registrar['picture_inside'],
+                'panorama': business_registrar['picture_panorama']
             },
-            'company_name': business_registrar['company_name'],
+            'business_name': business_registrar['business_name'],
             'owner': business_registrar['owner'],
             'business_nr': business_registrar['business_nr'],
             'fiscal_nr': business_registrar['fiscal_nr'],
