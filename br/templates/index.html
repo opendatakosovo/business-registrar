@@ -5,7 +5,12 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#sector_c').val('');
+        var docId = $( "#doc_id" ).val();
+        if( docId === ""){
+            $('#sector_c').val('');
+        }else if ($('#sector_c').val() != ""){
+            $("#sector_c").attr("disabled", false);
+        }
 
         //this function enables the sub selectField of Sector C, when we select the field   Sector C on General Select Field.
         $('select[name="sector"]').on('change', function(){
