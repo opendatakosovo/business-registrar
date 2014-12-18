@@ -8,8 +8,8 @@
         var docId = $( "#doc_id" ).val();
         if( docId === ""){
             $('#sector_c').val('');
-        }else if ($('#sector_c').val() != ""){
-            $("#sector_c").attr("disabled", false);
+        }else if ($('#sector').val() != "C. Processing Industry"){
+            $('#sector_c').val('');
         }
 
         //this function enables the sub selectField of Sector C, when we select the field   Sector C on General Select Field.
@@ -321,12 +321,12 @@
 
         <div class="form-group">
             <label class="col-xs-4" align="right">Kordinatat</label>
+            <div class="col-xs-3" >
+                {{ form.latitude(class="form-control", placeholder='Gjeresia') }}
+            </div>
             <div class="col-xs-3">
                 {{ form.longitude(class="form-control", placeholder='Gjatesia') }}
             </div>
-            <div class="col-xs-3" >
-                {{ form.latitude(class="form-control", placeholder='Gjeresia') }}
-             </div>
         </div>
         <div class="form-group">
             <div class="control-label col-xs-4">

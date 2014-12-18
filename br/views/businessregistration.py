@@ -23,6 +23,7 @@ class BusinessRegistration(MethodView):
             form.picture_outside.data = doc['picture']['outside']
             form.picture_inside.data = doc['picture']['inside']
             form.picture_panorama.data = doc['picture']['panorama']
+            form.business_type.data = doc['business_type']
             form.business_name.data = doc['business_name']
             form.owner.data = doc['owner']
             form.business_nr.data = doc['business_nr']
@@ -46,8 +47,8 @@ class BusinessRegistration(MethodView):
             form.twitter.data = doc['contacts']['twitter']
             form.address.data = doc['location']['address']
             form.city.data = doc['location']['city']
-            form.longitude.data = doc['location']['coordinates']['longitude']
             form.latitude.data = doc['location']['coordinates']['latitude']
+            form.longitude.data = doc['location']['coordinates']['longitude']
             form.speciality.data = doc['speciality']
             form.other_information.data = doc['other_information']
 
@@ -56,34 +57,36 @@ class BusinessRegistration(MethodView):
     def post(self, doc_id=None):
         '''process data and save them in database
         '''
-
         #get the doc ID from utils
-
         if doc_id == None:
             doc_id = utils.get_doc_id()
 
         #save business form
         self.save_business_form(doc_id)
 
-        return redirect(url_for('load_business_registration_form'))
+        return redirect(url_for('list'))
 
     def save_business_form(self, doc_id):
-
+ 
         # Update the patient doc with treatment.
         business_form = BusinessRegistrationForm(request.form)
         business_registrar = {}
         business_registrar = business_form.data
+
         if business_registrar['registration_date'] != "":
             date_string = business_registrar['registration_date']
             date = datetime.strptime(date_string, '%d/%m/%Y')
 
-        json_obj = {}
+        print 'AAAA'
+        print business_registrar['latitude']
+
         json_obj = {
             'picture':{
                 'outside': business_registrar['picture_outside'],
                 'inside': business_registrar['picture_inside'],
                 'panorama': business_registrar['picture_panorama']
             },
+            'business_type': business_registrar['business_type'],
             'business_name': business_registrar['business_name'],
             'owner': business_registrar['owner'],
             'business_nr': business_registrar['business_nr'],
@@ -102,8 +105,8 @@ class BusinessRegistration(MethodView):
                 'address': business_registrar['address'],
                 'city': business_registrar['city'],
                 'coordinates': {
-                    'longitude': business_registrar['longitude'],
                     'latitude': business_registrar['latitude'],
+                    'longitude': business_registrar['longitude']
                 }
             },
             'speciality': business_registrar['speciality'],

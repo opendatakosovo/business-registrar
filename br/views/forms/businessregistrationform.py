@@ -4,7 +4,7 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 from flask_wtf import Form
-from wtforms import FileField, TextField, TextAreaField, SelectField, IntegerField, SelectMultipleField, HiddenField
+from wtforms import FileField, TextField, TextAreaField, SelectField, IntegerField, SelectMultipleField, HiddenField, FloatField
 
 
 class BusinessRegistrationForm(Form):
@@ -18,14 +18,14 @@ class BusinessRegistrationForm(Form):
     business_type = SelectField(
         "Tipi Biznesit",
         choices=[
+            ('Other', 'Other'),
             ('D.P.H.', 'D.P.H.'),
             ('D.P.T.', 'D.P.T.'),
             ('D.P.T.Z.', 'D.P.T.Z.'),
             ('D.P.Z.', 'D.P.Z.'),
             ('N.P.T.', 'N.P.T.'),
             ('N.SH.', 'N.SH.'),
-            ('N.P.SH.', 'N.P.SH.'),
-            ('Other', 'Other'),
+            ('N.P.SH.', 'N.P.SH.')
         ], 
         default='Other'
     )
@@ -81,7 +81,8 @@ class BusinessRegistrationForm(Form):
             ('C3. Metal Industry', 'C3. Metal Industry'),
             ('C4. Textile Industry', 'C4. Textile Industry'),
             ('C5. Others', 'C5. Others')
-        ]
+        ],
+        default='C5. Others'
     )
     business_statute = SelectField(
         'Statuti Bisnesit',
@@ -98,7 +99,7 @@ class BusinessRegistrationForm(Form):
 
     city = SelectField('Qyteti', choices=[('Gjakove', 'Gjakove')], default='Gjakove')
 
-    longitude = IntegerField('Longitude')
-    latitude = IntegerField('Latitude')
+    longitude = FloatField('Longitude')
+    latitude = FloatField('Latitude')
     speciality = TextAreaField('Specialiteti i Biznesit')
     other_information = TextAreaField('Pershkrimi')

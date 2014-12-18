@@ -8,7 +8,7 @@ class Places(View):
     def dispatch_request(self):
     	methods = ['GET']
 
-    	result = mongo.db.business.find();
+    	result = mongo.db.businesses.find();
 
         # Build response object.
         resp = Response(
