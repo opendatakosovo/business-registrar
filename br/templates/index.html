@@ -5,8 +5,6 @@
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('.btn').button();
-
         $('#sector_c').val('');
 
         //this function enables the sub selectField of Sector C, when we select the field   Sector C on General Select Field.
@@ -152,20 +150,34 @@
         $('.form-date-picker').on('change.dp show.dp', function(e) {
             $('.form-horizontal').bootstrapValidator('revalidateField', 'registration_date');
         });
+
+        // Submit for on button click
+        $( ".btn" ).click(function() {
+            var docId = $( "#doc_id" ).val();
+
+            if( docId === ""){
+                // Register new bussiness
+                $( ".br-form" ).attr('action', '{{ config.BASE_PATH }}/register');
+            }else{
+                // Edit existing business
+                $( ".br-form" ).attr('action', '{{ config.BASE_PATH }}/register/' + docId);
+            }
+            
+
+            document.getElementById("br-form").submit();
+        });
     });
+
 </script>
 
-<script>
-    $(document).ready(function(){
-        
-    });
-</script>
 
-
-<form action="{{ url_for('register_business') }}" method="post" class="form-horizontal">
+<form id="br-form" action="" method="post" class="form-horizontal">
     <div class="container">
         <h3>Mirësevini në Sistemin e Regjistrimit të Bizneseve</h3>
         <hr><br>
+        <div>
+            {{ form.doc_id }}
+        </div>
         <div class="form-group">
             <div class="control-label col-xs-4">
                 {{ form.picture_outside.label }}
@@ -330,7 +342,7 @@
     </div>
     <br>
     <div align="center">
-        <button type=submit class="btn btn-primary">Ruaj te dhenat</button>
+        <button class="btn btn-primary">Ruaj te dhenat</button>
     </div>
     <br>
 </form> 

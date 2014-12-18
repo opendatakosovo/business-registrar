@@ -10,15 +10,16 @@ utils = Utils()
 class BusinessRegistration(MethodView):
     methods = ['GET', 'POST']
 
-    def get(self, bid=None):
+    def get(self, doc_id=None):
         ''' Dispatch request
         '''
         form = BusinessRegistrationForm()
 
         # Populate form if we are retrieve it to edit a business
-        if bid != None:
-            doc = mongo.db.businesses.find_one({'_id': bid})
+        if doc_id != None:
+            doc = mongo.db.businesses.find_one({'_id': doc_id})
 
+            form.doc_id.data = doc_id
             form.picture_outside.data = doc['picture']['outside']
             form.picture_inside.data = doc['picture']['inside']
             form.picture_panorama.data = doc['picture']['panorama']
@@ -52,12 +53,15 @@ class BusinessRegistration(MethodView):
 
         return render_template('index.html', form=form)
 
-    def post(self):
+    def post(self, doc_id=None):
         '''process data and save them in database
         '''
 
         #get the doc ID from utils
-        doc_id = utils.get_doc_id()
+
+        if doc_id == None:
+            doc_id = utils.get_doc_id()
+
         #save business form
         self.save_business_form(doc_id)
 

@@ -4,10 +4,12 @@ import sys
 reload(sys)
 sys.setdefaultencoding("utf-8")
 from flask_wtf import Form
-from wtforms import FileField, TextField, TextAreaField, SelectField, IntegerField, SelectMultipleField
+from wtforms import FileField, TextField, TextAreaField, SelectField, IntegerField, SelectMultipleField, HiddenField
 
 
 class BusinessRegistrationForm(Form):
+
+    doc_id = HiddenField()
 
     picture_outside = TextField('Fotoja e Jashtme e Kompanise')
     picture_inside = TextField('Fotoja e Mbrendshme e Kompanise')
@@ -24,7 +26,8 @@ class BusinessRegistrationForm(Form):
             ('N.SH.', 'N.SH.'),
             ('N.P.SH.', 'N.P.SH.'),
             ('Other', 'Other'),
-        ]
+        ], 
+        default='Other'
     )
 
     business_name = TextField('Emri Biznesit')

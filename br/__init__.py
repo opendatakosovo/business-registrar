@@ -94,12 +94,16 @@ def register_url_rules(app):
     '''
 
     #Index url rule
+
+    # GET Requests
     app.add_url_rule('/', view_func=BusinessRegistration.as_view('load_business_registration_form'))
 
-    app.add_url_rule('/register', view_func=BusinessRegistration.as_view('register_business'))
-
-    app.add_url_rule('/edit/<string:bid>', view_func=BusinessRegistration.as_view('edit_business_registration'))
+    app.add_url_rule('/edit/<string:doc_id>', view_func=BusinessRegistration.as_view('load_edit_business_registration_form'))
 
     app.add_url_rule('/list', view_func=List.as_view('list'))
 
     app.add_url_rule('/json/businesses', view_func=Places.as_view('json_business'))
+
+    # POST Requests
+    app.add_url_rule('/register', view_func=BusinessRegistration.as_view('register_business'))
+    app.add_url_rule('/register/<string:doc_id>', view_func=BusinessRegistration.as_view('edit_business'))
