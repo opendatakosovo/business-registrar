@@ -103,6 +103,7 @@ def register_url_rules(app):
     app.add_url_rule('/list', view_func=List.as_view('list'))
 
     app.add_url_rule('/json/businesses', view_func=Places.as_view('json_business'))
+    app.add_url_rule('/json/businesses/<string:category>', view_func=Places.as_view('json_business_category'))
 
     # POST Requests
     app.add_url_rule('/register', view_func=BusinessRegistration.as_view('register_business'))

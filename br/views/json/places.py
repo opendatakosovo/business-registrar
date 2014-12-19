@@ -5,10 +5,15 @@ from br import mongo
 
 class Places(View):
 
-    def dispatch_request(self):
+    def dispatch_request(self, category=None):
     	methods = ['GET']
 
-    	result = mongo.db.businesses.find();
+    	result = None
+
+    	if category == None:
+    		result = mongo.db.businesses.find()
+    	else:
+    		result = mongo.db.businesses.find({'activities': category})
 
         # Build response object.
         resp = Response(
